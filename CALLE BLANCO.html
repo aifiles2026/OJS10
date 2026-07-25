@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú Cafetería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#E8520A;
+    --red-dark:#7A1600;
+    --orange:#E8520A;
+    --blue:#009ACE;
+    --gold:#C4902A;
+    --black:#1A1A1A;
+    --charcoal:#2B2B2B;
+    --cream:#FFFFFF;
+    --white:#FFFFFF;
+    --line:#E4DDD0;
+    --green:#3F7D3A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--white);
+    color:var(--black);
+    padding-bottom:70px;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton',sans-serif;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+  }
+
+  /* HEADER */
+  header{
+    background:var(--black);
+    color:var(--white);
+    padding:22px 16px 26px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:5px;
+    background:linear-gradient(90deg,var(--red) 0%, var(--blue) 100%);
+  }
+  header .eyebrow{
+    font-size:12px;
+    letter-spacing:3px;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  header h1{
+    font-size:clamp(30px,8vw,42px);
+    line-height:1;
+  }
+  header p{
+    margin-top:8px;
+    font-size:14px;
+    color:#D8D2C6;
+    font-weight:500;
+  }
+
+  /* NAV */
+  nav{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    padding:14px;
+    max-width:720px;
+    margin:0 auto;
+  }
+  nav button{
+    background:var(--white);
+    border:2px solid var(--black);
+    border-radius:10px;
+    padding:12px 6px;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.3px;
+    color:var(--black);
+    cursor:pointer;
+    transition:all .15s ease;
+    line-height:1.25;
+  }
+  nav button .ico{display:block;font-size:20px;margin-bottom:4px;}
+  nav button.active,
+  nav button:hover{
+    background:var(--red);
+    border-color:var(--red);
+    color:var(--white);
+  }
+
+  main{max-width:720px;margin:0 auto;padding:0 14px;}
+  section{display:none;animation:fade .25s ease;}
+  section.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+  .section-head{
+    text-align:center;
+    margin:18px 0 14px;
+  }
+  .section-head h2{
+    font-size:26px;
+    color:var(--red);
+  }
+  .section-head span{
+    display:block;
+    font-size:13px;
+    font-weight:500;
+    color:#6b6b6b;
+    text-transform:none;
+    margin-top:2px;
+  }
+
+  .week-badge{
+    background:var(--black);
+    color:var(--white);
+    display:inline-block;
+    padding:6px 16px;
+    border-radius:20px;
+    font-size:12.5px;
+    font-weight:600;
+    margin:0 auto 16px;
+    text-align:center;
+    width:fit-content;
+  }
+  .week-badge-wrap{text-align:center;}
+
+  /* PRICE BADGE (signature element) */
+  .price-badge{
+    background:var(--black);
+    color:var(--white);
+    width:74px;height:74px;
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Anton',sans-serif;
+    line-height:1;
+    flex-shrink:0;
+    border:2px solid var(--gold);
+    transform:rotate(-6deg);
+  }
+  .price-badge small{
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:2px;
+  }
+  .price-badge b{font-size:15px;}
+
+  /* CARDS */
+  .card{
+    background:var(--white);
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:14px;
+    border:1px solid var(--line);
+    box-shadow:0 2px 0 rgba(0,0,0,0.04);
+  }
+  .card-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:10px;
+  }
+  .card-top h3{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:16px;
+    text-transform:none;
+    color:var(--black);
+  }
+  .card-top .en{
+    display:block;
+    font-style:italic;
+    font-weight:500;
+    font-size:12.5px;
+    color:#8a8a8a;
+    margin-top:1px;
+  }
+  .card p.desc{
+    font-size:13.5px;
+    color:#4a4a4a;
+    line-height:1.5;
+    margin-bottom:6px;
+  }
+  .card .includes{
+    font-size:11.5px;
+    color:#9a9a9a;
+    font-style:italic;
+    border-top:1px dashed var(--line);
+    padding-top:8px;
+    margin-top:8px;
+  }
+  .veg-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    background:#EAF3E9;
+    color:var(--green);
+    font-size:10.5px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:10px;
+    margin-bottom:6px;
+  }
+
+  /* WEEK TABLE */
+  .day-block{
+    background:var(--white);
+    border-radius:14px;
+    border:1px solid var(--line);
+    margin-bottom:10px;
+    overflow:hidden;
+  }
+  .day-block summary{
+    list-style:none;
+    cursor:pointer;
+    padding:12px 16px;
+    background:var(--red);
+    color:var(--white);
+    font-weight:700;
+    font-size:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .day-block summary::-webkit-details-marker{display:none;}
+  .day-block summary::after{content:"+";font-size:18px;}
+  .day-block[open] summary::after{content:"–";}
+  .day-block .day-body{padding:12px 16px 16px;}
+  .dish-row{
+    padding:8px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .dish-row:last-child{border-bottom:none;}
+  .dish-row .es{font-weight:600;font-size:13.5px;}
+  .dish-row .en{font-style:italic;font-size:12px;color:#8a8a8a;}
+
+  /* PRICE LIST */
+  table.pricelist{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--white);
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:18px;
+    border:1px solid var(--line);
+  }
+  table.pricelist caption{
+    text-align:left;
+    background:var(--black);
+    color:var(--white);
+    padding:10px 14px;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  table.pricelist td{
+    padding:9px 14px;
+    font-size:13px;
+    border-bottom:1px solid var(--line);
+  }
+  table.pricelist tr:last-child td{border-bottom:none;}
+  table.pricelist td:last-child{
+    text-align:right;
+    font-weight:700;
+    color:var(--red);
+    white-space:nowrap;
+  }
+
+  .antojitos{
+    background:var(--black);
+    color:var(--white);
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:18px;
+  }
+  .antojitos h3{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:14px;
+    color:var(--gold);
+    margin-bottom:10px;
+    text-transform:uppercase;
+  }
+  .antojitos .row{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    font-size:13px;
+  }
+  .antojitos .row:last-child{border-bottom:none;}
+  .antojitos .row span:first-child{color:var(--gold);font-weight:600;}
+
+  .footnote{
+    text-align:center;
+    font-size:11px;
+    color:#9a9a9a;
+    padding:20px 10px 30px;
+  }
+
+  .split-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+
+  @media(min-width:600px){
+    nav{grid-template-columns:repeat(6,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cafetería</h1>
+  <p>Menú semanal · Cocinado en sitio</p>
+</header>
+
+<nav>
+  <button class="active" data-tab="cooked"><span class="ico">🔥</span>Cooked<br>to Order</button>
+  <button data-tab="executive"><span class="ico">⭐</span>Executive<br>Menu</button>
+  <button data-tab="special"><span class="ico">🌟</span>Special<br>Menu</button>
+  <button data-tab="grabgo"><span class="ico">🥡</span>Grab<br>&amp; Go</button>
+  <button data-tab="breakfast"><span class="ico">☀️</span>Breakfast</button>
+  <button data-tab="prices"><span class="ico">💰</span>Lista de<br>Precios</button>
+</nav>
+
+<main>
+
+  <!-- COOKED TO ORDER -->
+  <section id="cooked" class="active">
+    <div class="section-head">
+      <h2>🔥 Cooked to Order</h2>
+      <span>De 11:00 am a 2:00 pm · Pedilo en la línea de servicio</span>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top">
+            <h3>Chicken breast / Beef steak
+              <span class="en">Pollo o res, a la orden</span>
+            </h3>
+          </div>
+          <p class="desc">Elegí entre una jugosa pechuga de pollo o un bistec de res recién cocinado.<br>
+          <span style="font-style:italic;color:#8a8a8a;">Choose between a juicy steak or freshly cooked chicken.</span></p>
+          <p class="includes">Incluye: plato principal (buffet del día, incluye vegetariano), ensalada, entrada (sopa o caldo) y bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡2.500</b></div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:26px;">
+      <h2 style="font-size:20px;">Opciones Executive</h2>
+      <span>Formatos ligeros, vegetarianos incluidos 🌿</span>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Salad<span class="en">Ensalada</span></h3></div>
+          <p class="desc">Plato principal (¼ proteína) + ¾ de ensalada (300 g).</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡2.500</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Salad &amp; Vegetables<span class="en">Ensalada y vegetales</span></h3></div>
+          <p class="desc">Plato principal (¼ proteína) + ¼ vegetales + 200 g de ensalada (2/4).</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡2.500</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Casado</h3></div>
+          <p class="desc">Plato principal (¼ proteína) + ensalada + leguminosas + arroz + vegetales.</p>
+          <p class="includes">*Aplica opción vegetariana/vegana. Incluye arroz, leguminosas, guarnición, entrada, ensalada y bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡2.500</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE MENU (semanal) -->
+  <section id="executive">
+    <div class="section-head">
+      <h2>📅 Executive Menu</h2>
+      <span>Plato principal + acompañamientos</span>
+    </div>
+    <div class="week-badge-wrap"><div class="week-badge">Semana del 27 al 31 de julio, 2026 · ₡2.500</div></div>
+
+    <details class="day-block" open>
+      <summary>Monday · Lunes</summary>
+      <div class="day-body">
+        <div class="dish-row"><div class="es">Chuleta ahumada encebollada</div><div class="en">Smoked pork chop with sautéed onions</div></div>
+        <div class="dish-row"><div class="es">Trozos de pollo en salsa de tomate</div><div class="en">Chicken chunks in tomato sauce</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Sopa negra</div><div class="en">Black bean soup</div></div>
+      </div>
+    </details>
+
+    <details class="day-block">
+      <summary>Tuesday · Martes</summary>
+      <div class="day-body">
+        <div class="dish-row"><div class="es">Lonjas de res en salsa de vino</div><div class="en">Sliced beef in wine sauce</div></div>
+        <div class="dish-row"><div class="es">Arroz con pollo</div><div class="en">Chicken rice</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Chayote relleno con carne de soya</div><div class="en">Chayote stuffed with soy protein</div></div>
+      </div>
+    </details>
+
+    <details class="day-block">
+      <summary>Wednesday · Miércoles</summary>
+      <div class="day-body">
+        <div class="dish-row"><div class="es">Filete de tilapia empanizado con hierbas</div><div class="en">Herb-breaded tilapia fillet</div></div>
+        <div class="dish-row"><div class="es">Pastel de papa con carne molida</div><div class="en">Ground beef potato casserole</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Torta de garbanzo con salsa de hongos</div><div class="en">Chickpea patty in mushroom sauce</div></div>
+      </div>
+    </details>
+
+    <details class="day-block">
+      <summary>Thursday · Jueves</summary>
+      <div class="day-body">
+        <div class="dish-row"><div class="es">Bistec de cerdo BBQ</div><div class="en">BBQ pork steak</div></div>
+        <div class="dish-row"><div class="es">Pollo al limón (pechuga deshuesada)</div><div class="en">Lemon chicken breast</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Quesadilla vegetariana con salsa criolla</div><div class="en">Vegetarian quesadilla with creole sauce</div></div>
+      </div>
+    </details>
+
+    <details class="day-block">
+      <summary>Friday · Viernes</summary>
+      <div class="day-body">
+        <div class="dish-row"><div class="es">Filete de pescado al curry</div><div class="en">Curry fish fillet</div></div>
+        <div class="dish-row"><div class="es">Lomo fingido relleno con salsa de hongos</div><div class="en">Stuffed beef roll in mushroom sauce</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Barbudos con queso</div><div class="en">Corn fritters with cheese</div></div>
+      </div>
+    </details>
+
+    <p class="footnote">*Incluye: Arroz, leguminosas, guarnición/vegetales, ensalada, entrada y bebida.</p>
+  </section>
+
+  <!-- SPECIAL MENU (semanal) -->
+  <section id="special">
+    <div class="section-head">
+      <h2 style="color:var(--blue);">🌟 Special Menu</h2>
+      <span>Un plato distinto cada día</span>
+    </div>
+    <div class="week-badge-wrap"><div class="week-badge">Semana del 27 al 31 de julio, 2026 · ₡3.500</div></div>
+
+    <div class="card">
+      <div class="card-top"><h3>Monday · Shredded beef flauta<span class="en">Lunes · Flauta de carne desmenuzada</span></h3></div>
+      <p class="desc">Con guacamole, pico de gallo, ensalada y papas fritas.<br><span style="font-style:italic;color:#8a8a8a;">With guacamole, pico de gallo, side salad, and french fries.</span></p>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Tuesday · Teriyaki chicken quinoa bowl<span class="en">Martes · Bowl de pollo teriyaki con quinoa</span></h3></div>
+      <p class="desc">Pechuga de pollo con quinoa en salsa teriyaki.</p>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Wednesday · Caribbean chicken<span class="en">Miércoles · Pollo caribeño</span></h3></div>
+      <p class="desc">Muslo de pollo en salsa estilo caribeño.</p>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Thursday · Supreme pasta<span class="en">Jueves · Pasta suprema</span></h3></div>
+      <p class="desc">Pasta corta con carne molida, jamón y queso.</p>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Friday · Argentine milanesa<span class="en">Viernes · Milanesa argentina</span></h3></div>
+      <p class="desc">Milanesa empanizada servida con papas bravas.</p>
+    </div>
+    <p class="footnote">*Incluye: acompañamientos y bebida. Antojitos disponibles por separado — pedilos en la línea.</p>
+  </section>
+
+  <!-- GRAB & GO -->
+  <section id="grabgo">
+    <div class="section-head">
+      <h2 style="color:var(--blue);">🥡 Grab &amp; Go</h2>
+      <span>Listos para llevar</span>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div><div class="card-top"><h3>Wraps y burritos</h3></div></div>
+        <div class="price-badge"><small>Only</small><b>₡3.000</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="split-row">
+        <div><div class="card-top"><h3>Ensaladas</h3></div></div>
+        <div class="price-badge"><small>Only</small><b>₡3.950</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="split-row">
+        <div><div class="card-top"><h3>Sandwich</h3></div></div>
+        <div class="price-badge"><small>Only</small><b>₡2.600</b></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="split-row">
+        <div><div class="card-top"><h3>Lasañas</h3></div></div>
+        <div class="price-badge"><small>Only</small><b>₡3.000</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREAKFAST -->
+  <section id="breakfast">
+    <div class="section-head">
+      <h2>☀️ Breakfast</h2>
+      <span>Todas las mañanas</span>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Típico</h3></div>
+          <p class="desc">Gallo pinto + 2 acompañamientos a elegir (huevo, queso, plátano, natilla o embutido) + pan o tortilla + bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡1.500</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Típico 2</h3></div>
+          <p class="desc">Gallo pinto + 3 acompañamientos a elegir (huevo, queso, plátano, natilla o embutido) + bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡1.750</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Full</h3></div>
+          <p class="desc">Gallo pinto + 4 acompañamientos a elegir (huevo, queso, plátano, natilla, embutido o ensalada) + fruta + pan o tortilla + bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡2.500</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>American<span class="en">Americano</span></h3></div>
+          <p class="desc">Pancakes o tostadas (2 u.) + huevo + tocineta o embutido + miel o jalea + bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡1.850</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="split-row">
+        <div>
+          <div class="card-top"><h3>Low Carb</h3></div>
+          <p class="desc">Omelette (2 huevos) + ¼ de aguacate + ensalada verde o fruta + bebida.</p>
+        </div>
+        <div class="price-badge"><small>Only</small><b>₡1.500</b></div>
+      </div>
+    </div>
+
+    <p class="footnote">*Bebida incluida. No incluye refill. / Beverage included, refill not included.</p>
+  </section>
+
+  <!-- LISTA DE PRECIOS -->
+  <section id="prices">
+    <div class="section-head">
+      <h2>💰 Lista de Precios</h2>
+      <span>À la carte · Precios en colones costarricenses</span>
+    </div>
+
+    <table class="pricelist">
+      <caption>Lunch — à la carte</caption>
+      <tbody>
+        <tr><td>Rice / Arroz</td><td>₡350</td></tr>
+        <tr><td>Beans / Frijoles</td><td>₡350</td></tr>
+        <tr><td>Salad / Ensalada</td><td>₡600</td></tr>
+        <tr><td>Side / Guarnición</td><td>₡600</td></tr>
+        <tr><td>Plantain / Plátano maduro</td><td>₡400</td></tr>
+        <tr><td>Main course / Plato principal</td><td>₡1.500</td></tr>
+      </tbody>
+    </table>
+
+    <table class="pricelist">
+      <caption>Desserts — Postres</caption>
+      <tbody>
+        <tr><td>Cheesecake</td><td>₡2.150</td></tr>
+        <tr><td>Torta chilena</td><td>₡2.350</td></tr>
+        <tr><td>Queque de fresa o chocomenta</td><td>₡2.000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="antojitos">
+      <h3>🍟 Antojitos del día</h3>
+      <div class="row"><span>Lunes</span><span>Aros de cebolla</span></div>
+      <div class="row"><span>Martes</span><span>Arroz con leche</span></div>
+      <div class="row"><span>Miércoles</span><span>Ceviche de pescado</span></div>
+      <div class="row"><span>Jueves</span><span>Papa asada con natilla</span></div>
+      <div class="row"><span>Viernes</span><span>Churro</span></div>
+    </div>
+
+    <p class="footnote">Precios en colones costarricenses (₡). *Imágenes con fines ilustrativos.</p>
+  </section>
+
+</main>
+
+<script>
+  const buttons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main section');
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      buttons.forEach(b=>b.classList.remove('active'));
+      sections.forEach(s=>s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
