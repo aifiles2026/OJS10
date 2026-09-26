@@ -1,8 +1,11 @@
-html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light only">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<meta name="darkreader-lock">
 <meta name="theme-color" content="#FFFFFF">
 <title>Menú Cafetería</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +24,13 @@ html lang="es">
     --line:#E4DDD0;
     --green:#3F7D3A;
   }
-  html{color-scheme:light only;}
+  html{color-scheme:light dark;background:#FFFFFF;}
+  /* Android: el sitio "declara" modo oscuro pero usa los mismos colores claros,
+     así Chrome/Samsung no aplican su oscurecimiento automático */
+  @media (prefers-color-scheme: dark){
+    html,body{background:#FFFFFF !important;color:#1A1A1A !important;}
+    :root{--cream:#FFFFFF;--white:#FFFFFF;--black:#1A1A1A;--charcoal:#2B2B2B;--line:#E4DDD0;}
+  }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
     font-family:'Poppins',sans-serif;
@@ -332,7 +341,7 @@ html lang="es">
     overflow:hidden;
     box-shadow:0 6px 20px rgba(0,0,0,0.15);
     aspect-ratio:16/11;
-    background:#111;
+    background:#FFFFFF;
   }
   .promo-track{
     display:flex;
@@ -488,50 +497,50 @@ html lang="es">
       <h2>📅 Executive Menu</h2>
       <span>Plato principal + acompañamientos</span>
     </div>
-    <div class="week-badge-wrap"><div class="week-badge">Semana del 21 al 25 de setiembre, 2026 · ₡2.500</div></div>
+    <div class="week-badge-wrap"><div class="week-badge">Semana del 28 de setiembre al 2 de octubre, 2026 · ₡2.500</div></div>
 
     <details class="day-block" open>
-      <summary>Monday · Lunes 21</summary>
+      <summary>Monday · Lunes 28</summary>
       <div class="day-body">
-        <div class="dish-row"><div class="es">Filete de pescado en salsa de perejil</div><div class="en">Fish fillet in parsley sauce</div></div>
-        <div class="dish-row"><div class="es">Fajitas de pollo con chile dulce</div><div class="en">Chicken fajitas with bell pepper</div></div>
-        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Croqueta de plátano maduro con queso y frijol</div><div class="en">Sweet plantain croquette with cheese and beans</div></div>
+        <div class="dish-row"><div class="es">Pollo a las hierbas (pechuga deshuesada)</div><div class="en">Herb chicken (boneless breast)</div></div>
+        <div class="dish-row"><div class="es">Fajitas de cerdo con zanahoria y vainica</div><div class="en">Pork fajitas with carrot and green beans</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Chancleta rellena de queso a la plancha</div><div class="en">Grilled chayote stuffed with cheese</div></div>
       </div>
     </details>
 
     <details class="day-block">
-      <summary>Tuesday · Martes 22</summary>
+      <summary>Tuesday · Martes 29</summary>
       <div class="day-body">
-        <div class="dish-row"><div class="es">Lonjas de res en salsa de romero y hongos</div><div class="en">Beef strips in rosemary-mushroom sauce</div></div>
-        <div class="dish-row"><div class="es">Garbanzos con pollo y vegetales</div><div class="en">Chickpeas with chicken and vegetables</div></div>
-        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Chili con carne de soya</div><div class="en">Soy chili</div></div>
+        <div class="dish-row"><div class="es">Bistec de res a la pimienta</div><div class="en">Pepper beef steak</div></div>
+        <div class="dish-row"><div class="es">Arroz chaufa con fajitas de pollo y jamón</div><div class="en">Chaufa fried rice with chicken strips and ham</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Crepa vegetariana en salsa blanca</div><div class="en">Vegetarian crepe in white sauce</div></div>
       </div>
     </details>
 
     <details class="day-block">
-      <summary>Wednesday · Miércoles 23</summary>
+      <summary>Wednesday · Miércoles 30</summary>
       <div class="day-body">
-        <div class="dish-row"><div class="es">Pollo a la plancha</div><div class="en">Grilled chicken breast</div></div>
-        <div class="dish-row"><div class="es">Albóndigas de res en salsa de estragón</div><div class="en">Beef meatballs in tarragon sauce</div></div>
-        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Tomate relleno con carne de soya</div><div class="en">Tomato stuffed with soy meat</div></div>
+        <div class="dish-row"><div class="es">Filete de corvineta a la plancha</div><div class="en">Grilled corvina fillet</div></div>
+        <div class="dish-row"><div class="es">Tortas de carne molida con salsa de tomate</div><div class="en">Ground beef patties in tomato sauce</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Sopa negra</div><div class="en">Black bean soup</div></div>
       </div>
     </details>
 
     <details class="day-block">
-      <summary>Thursday · Jueves 24</summary>
+      <summary>Thursday · Jueves 1</summary>
       <div class="day-body">
-        <div class="dish-row"><div class="es">Filete de pescado a la mantequilla y albahaca</div><div class="en">Fish fillet in butter and basil sauce</div></div>
-        <div class="dish-row"><div class="es">Pulled pork</div><div class="en">Pulled pork</div></div>
-        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Arroz con vegetales y queso</div><div class="en">Rice with vegetables and cheese</div></div>
+        <div class="dish-row"><div class="es">Lomo de cerdo en salsa satay (tailandesa)</div><div class="en">Pork loin in satay sauce (Thai)</div></div>
+        <div class="dish-row"><div class="es">Trocitos de pollo salteados a la mexicana con chile, cebolla y chipotle</div><div class="en">Mexican-style sautéed chicken bites with bell pepper, onion and chipotle</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Arroz con palmito estilo pastel</div><div class="en">Heart of palm rice casserole</div></div>
       </div>
     </details>
 
     <details class="day-block">
-      <summary>Friday · Viernes 25</summary>
+      <summary>Friday · Viernes 2</summary>
       <div class="day-body">
-        <div class="dish-row"><div class="es">Lonja de cerdo en salsa criolla</div><div class="en">Pork chop in creole sauce</div></div>
-        <div class="dish-row"><div class="es">Pastel de papa con pollo</div><div class="en">Potato pie with chicken</div></div>
-        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Pescozón de ayote con queso</div><div class="en">Squash and cheese fritter, egg-battered</div></div>
+        <div class="dish-row"><div class="es">Pollo en salsa BBQ (pechuga deshuesada)</div><div class="en">BBQ chicken (boneless breast)</div></div>
+        <div class="dish-row"><div class="es">Guiso de costilla de cerdo con papas</div><div class="en">Pork rib stew with potatoes</div></div>
+        <div class="dish-row"><span class="veg-tag">🌿 Veg</span><div class="es">Penne con tomate y aceituna</div><div class="en">Penne with tomato and olives</div></div>
       </div>
     </details>
 
@@ -544,27 +553,27 @@ html lang="es">
       <h2 style="color:var(--blue);">🌟 Special Menu</h2>
       <span>Un plato distinto cada día</span>
     </div>
-    <div class="week-badge-wrap"><div class="week-badge">Semana del 21 al 25 de setiembre, 2026 · ₡3.500</div></div>
+    <div class="week-badge-wrap"><div class="week-badge">Semana del 28 de setiembre al 2 de octubre, 2026 · ₡3.500</div></div>
 
     <div class="card">
-      <div class="card-top"><h3>Monday · Texan beef burger<span class="en">Lunes 21 · Hamburguesa tejana</span></h3></div>
-      <p class="desc"><span style="font-style:italic;color:#8a8a8a;">Artisan beef burger.</span></p>
+      <div class="card-top"><h3>Monday · Mixed nachos<span class="en">Lunes 28 · Nachos mixtos</span></h3></div>
+      <p class="desc"><span style="font-style:italic;color:#6f6f6f;">Con carne y pollo.</span><br><span style="font-style:italic;color:#8a8a8a;">With beef and chicken.</span></p>
     </div>
     <div class="card">
-      <div class="card-top"><h3>Tuesday · Patacones with pork crackling<span class="en">Martes 22 · Patacones con chicharrón</span></h3></div>
-      <p class="desc"><span style="font-style:italic;color:#8a8a8a;">Crispy patacones with pork crackling.</span></p>
+      <div class="card-top"><h3>Tuesday · Chicken nuggets<span class="en">Martes 29 · Nuggets de pollo</span></h3></div>
+      <p class="desc"><span style="font-style:italic;color:#6f6f6f;">Con salsa de mostaza y miel.</span><br><span style="font-style:italic;color:#8a8a8a;">With honey mustard sauce.</span></p>
     </div>
     <div class="card">
-      <div class="card-top"><h3>Wednesday · Special shrimp rice<span class="en">Miércoles 23 · Arroz con camarones</span></h3></div>
-      <p class="desc"><span style="font-style:italic;color:#8a8a8a;">Special rice with shrimp.</span></p>
+      <div class="card-top"><h3>Wednesday · Chicken cordon bleu<span class="en">Miércoles 30 · Cordon bleu de pollo</span></h3></div>
+      <p class="desc"><span style="font-style:italic;color:#6f6f6f;">Con papas fritas y ensalada.</span><br><span style="font-style:italic;color:#8a8a8a;">With french fries and salad.</span></p>
     </div>
     <div class="card">
-      <div class="card-top"><h3>Thursday · Argentine chicken milanese<span class="en">Jueves 24 · Pollo milanesa argentino</span></h3></div>
-      <p class="desc"><span style="font-style:italic;color:#8a8a8a;">With tomato and cheese.</span></p>
+      <div class="card-top"><h3>Thursday · Mexican burrito<span class="en">Jueves 1 · Burrito mexicano</span></h3></div>
+      <p class="desc"><span style="font-style:italic;color:#6f6f6f;">Carne mechada, tortilla de perejil y ajo, y natilla.</span><br><span style="font-style:italic;color:#8a8a8a;">Shredded beef, garlic-parsley tortilla and sour cream.</span></p>
     </div>
     <div class="card">
-      <div class="card-top"><h3>Friday · Chicken twister<span class="en">Viernes 25 · Twister de pollo</span></h3></div>
-      <p class="desc"><span style="font-style:italic;color:#8a8a8a;">With ranch dressing.</span></p>
+      <div class="card-top"><h3>Friday · Skewer trio<span class="en">Viernes 2 · Trío de pinchos</span></h3></div>
+      <p class="desc"><span style="font-style:italic;color:#6f6f6f;">Pollo, carne y cerdo, con guacamole, doraditas y ensalada.</span><br><span style="font-style:italic;color:#8a8a8a;">Chicken, beef and pork, with guacamole, doraditas and salad.</span></p>
     </div>
     <p class="footnote">*Incluye: acompañamientos y bebida. Antojitos disponibles por separado — pedilos en la línea.</p>
   </section>
